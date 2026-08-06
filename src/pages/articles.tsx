@@ -66,7 +66,7 @@ export default function Articles({ articles, categoryDirs }: ArticlesPageProps) 
                     
                     <div
                       className="h-48 bg-center bg-cover flex items-end justify-center"
-                      style={{ backgroundImage: "url('/images/home_background.webp')" }}
+                      style={{ backgroundImage: article.image ? `url('${article.image}')` : "url('/images/home_background.webp')" }}
                     >
                     </div>
                     <div className="p-6">
@@ -143,6 +143,12 @@ export default function Articles({ articles, categoryDirs }: ArticlesPageProps) 
                   )}
                   
                   <div className="flex flex-col md:flex-row md:items-start gap-6">
+                    
+                    {article.image && (
+                      <div className="w-full md:w-48 h-48 md:h-auto flex-shrink-0 bg-center bg-cover rounded-lg"
+                        style={{ backgroundImage: `url('${article.image}')` }}
+                      ></div>
+                    )}
                     
                     <div className="flex-grow">
                       <div className="flex items-center text-sm mb-2">

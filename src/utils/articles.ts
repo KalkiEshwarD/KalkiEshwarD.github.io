@@ -21,6 +21,7 @@ export interface ArticleMatter {
   featured: boolean;
   author: string;
   slug?: string;
+  image?: string;
 }
 
 export interface Article extends ArticleMatter {
@@ -64,7 +65,7 @@ export function getArticleBySlug(slug: string): Article | null {
       return null;
     }
 
-    const readingTimeResult = readingTime(articleData.content);
+    const readingTimeResult = readingTime(articleData.content, { wordsPerMinute: 120 });
 
     return {
       slug: articleData.slug,
@@ -78,6 +79,7 @@ export function getArticleBySlug(slug: string): Article | null {
       tags: articleData.tags,
       featured: articleData.featured,
       author: articleData.author,
+      image: articleData.image,
     };
   } catch (error) {
     console.error(`Error reading article ${slug}:`, error);
@@ -134,7 +136,7 @@ export function getAllArticles(): Article[] {
   try {
     const articles = articlesData.articles
       .map((articleData: ArticleData) => {
-        const readingTimeResult = readingTime(articleData.content);
+        const readingTimeResult = readingTime(articleData.content, { wordsPerMinute: 120 });
         return {
           slug: articleData.slug,
           content: articleData.content,
@@ -148,6 +150,7 @@ export function getAllArticles(): Article[] {
           featured: articleData.featured,
           author: articleData.author,
           categoryDir: articleData.categoryDir,
+          image: articleData.image,
         };
       })
       .sort((a: Article, b: Article) => {

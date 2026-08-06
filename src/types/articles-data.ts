@@ -10,6 +10,7 @@ export interface ArticleData {
   featured: boolean;
   author: string;
   categoryDir: string;
+  image: string;
 }
 
 export interface ArticlesDataFile {

@@ -115,6 +115,7 @@ function generateArticlesData() {
             featured: data.featured || false,
             author: data.author || '',
             categoryDir: categoryDir, // Store original directory name
+            image: data.image || '', // Article image for list page
           });
 
           categoryArticleCount++;
